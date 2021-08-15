@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [ClientController::class, 'index'])->middleware('client');
 Route::get('/requisition', [ClientController::class, 'requisition'])->middleware('client');
 Route::post('/send', [ClientController::class, 'send']);
+
+Route::get('/admin', [ManagerController::class, 'index'])->middleware('manager');
+Route::get('/admin/answer/{id}', [ManagerController::class, 'answer'])->middleware('manager');
+Route::post('/admin/send/{id}', [ManagerController::class, 'send']);

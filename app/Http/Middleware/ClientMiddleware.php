@@ -18,6 +18,8 @@ class ClientMiddleware
     {
         if (auth()->user()->role == 2) {
             return $next($request);
+        }elseif (auth()->user()->role == 1) {
+            return redirect('/admin');
         }
         return redirect('home')->with('error', 'You are not allowed to this page');
     }

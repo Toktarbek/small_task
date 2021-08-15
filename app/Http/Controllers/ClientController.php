@@ -28,7 +28,7 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         $requisition_read = $this->get_data(0);
-        $requisition_unread = $this->get_data(2);
+        $requisition_unread = $this->get_data(1);
         
         return view('client/index',compact('requisition_read','requisition_unread'));
     }
@@ -62,6 +62,6 @@ class ClientController extends Controller
     	}
         $requisition->save();
 
-        return redirect('/')->with('success', 'Успешно!');
+        return redirect('/')->with('status', 'Заявка успешно отправлена!');
     }
 }

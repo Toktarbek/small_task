@@ -18,8 +18,6 @@ class ManagerMiddleware
     {
         if (auth()->user()->role == 1) {
             return $next($request);
-        }elseif (auth()->user()->role == 2) {
-            return redirect('/');
         }
 
         return redirect('home')->with('error', 'You are not allowed to this page');
