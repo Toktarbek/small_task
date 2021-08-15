@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-10">
-                            <h5 class="card-title">Заявка</h5>
+                            Моя заявка <a href="{{url('requisition')}}">создать заявку</a>
                         </div>
                         <div class="col-md-2 float-right">
                             <div class="card-tools">
@@ -41,36 +41,38 @@
                         </div>
                     @endif
 
-                    @if($check)
                     <div class="alert alert-Light">
-                        <form action="{{url('send')}}" method="POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text">Тема</span>
-                                </div>
-                                <input type="text" class="form-control" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                            <label for="messages">Сообщение:</label>
-                            <textarea class="form-control" rows="5" name="message" required></textarea>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text">Файл</span>
-                                </div>
-                                <input type="file" class="form-control" name="files" required>
-                            </div>
-                            <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary">Отправить</button>
-                            </div>
-                        </form>
+                    <table class="table table-bordered table-condensed">
+                            <thead>
+                                <th>#</th>
+                                <th>Тема</th>
+                                <th>Сообщение</th>
+                                <th>Ответы</th>
+                                <th>Менеджер</th>
+                                <th>Дата создания</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($requisition_read as $requisition)
+                                <tr>
+                                    <td>{{$requisition->id}}</td>
+                                    <td>{{$requisition->subject}}</td>
+                                    <td>{{$requisition->message}}</td>
+                                    <td>
+                                        <ul class="list-group">
+                                            @foreach($requisition->answers as $answer)
+                                            <li class="list-group-item">{{$answer['answer']}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>{{$requisition->user->name}}</td>
+                                    <td>{{$requisition->user->created_at}}</td>
+                                    <td><a href="" class="btn btn-primary">Подробнее</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    @else
-                    <div class="alert alert-success" role="alert">
-                        Ваша заявка успешно отправлена следующее будеть завтра.
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>

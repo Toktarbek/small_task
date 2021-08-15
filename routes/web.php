@@ -22,5 +22,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [ClientController::class, 'index'])->name('/');
+Route::get('/', [ClientController::class, 'index'])->middleware('client');
+Route::get('/requisition', [ClientController::class, 'requisition'])->middleware('client');
 Route::post('/send', [ClientController::class, 'send']);
