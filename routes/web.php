@@ -20,7 +20,7 @@ use App\Http\Controllers\ClientController;
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [ClientController::class, 'index'])->name('/');
 Route::post('/send', [ClientController::class, 'send']);

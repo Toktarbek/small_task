@@ -14,16 +14,19 @@
                             <div class="card-tools">
                                 <a class="btn btn-tool btn-sm" data-toggle="dropdown" href="#">
                                     <i class="far fa-bell"></i>
-                                    <span class="badge badge-warning navbar-badge">1</span>
+                                    <span class="badge badge-warning navbar-badge">{{count($requisition_unread)}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                    <span class="dropdown-item dropdown-header">test</span>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="" class="dropdown-item">
-                                        <i class="fas fa-users mr-2"></i> test2
-                                        <span class="float-right text-muted text-sm">2021-08-16</span>
-                                    </a>
-                                    
+                                    <span class="dropdown-item dropdown-header">
+                                    {{(count($requisition_unread)>0)?count($requisition_unread).' ответ':'ответ нет'}}
+                                    </span>
+                                    @foreach($requisition_unread as $requisition)
+                                        <div class="dropdown-divider"></div>
+                                        <a href="" class="dropdown-item">
+                                            <i class="fas fa-users mr-2"></i> {{$requisition->subject}}
+                                            <span class="float-right text-muted text-sm">{{$requisition->created_at}}</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
