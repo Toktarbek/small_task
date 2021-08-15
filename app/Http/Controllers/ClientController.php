@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Requisition;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -20,5 +21,11 @@ class ClientController extends Controller
         $check = (count($requisition)>0)?false:true;
         
         return view('client/index',compact('check'));
+    }
+
+    public function send(Request $request)
+    {
+        $subject = $request->subject;
+        $message = $request->message;
     }
 }
