@@ -17,6 +17,7 @@ class CreateRequisitionsTable extends Migration
             $table->id();
             $table->string('subject');
             $table->text('message');
+            $table->string('file_name');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
