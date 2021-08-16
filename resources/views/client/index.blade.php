@@ -42,30 +42,36 @@
                     @endif
 
                     <div class="alert alert-Light table-responsive">
+                        @if(count($requisition_read)>0)
                         <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <th>#</th>
-                                    <th>Тема</th>
-                                    <th>Сообщение</th>
-                                    <th>Ответы</th>
-                                    <th>Менеджер</th>
-                                    <th>Дата ответа</th>
-                                </thead>
-                                <tbody>
-                                    @foreach($requisition_read as $requisition)
-                                    <tr>
-                                        <td>{{$requisition->id}}</td>
-                                        <td>{{$requisition->subject}}</td>
-                                        <td>{{$requisition->message}}</td>
-                                        <td>
-                                            {{(!empty($requisition->answers))?$requisition->answers->answer:''}}
-                                        </td>
-                                        <td>{{$requisition->user->name}}</td>
-                                        <td>{{(!empty($requisition->answers))?$requisition->answers->created_at:''}}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <thead>
+                                <th>#</th>
+                                <th>Тема</th>
+                                <th>Сообщение</th>
+                                <th>Ответы</th>
+                                <th>Менеджер</th>
+                                <th>Дата ответа</th>
+                            </thead>
+                            <tbody>
+                                @foreach($requisition_read as $requisition)
+                                <tr>
+                                    <td>{{$requisition->id}}</td>
+                                    <td>{{$requisition->subject}}</td>
+                                    <td>{{$requisition->message}}</td>
+                                    <td>
+                                        {{(!empty($requisition->answers))?$requisition->answers->answer:''}}
+                                    </td>
+                                    <td>{{$requisition->user->name}}</td>
+                                    <td>{{(!empty($requisition->answers))?$requisition->answers->created_at:''}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                            <div class="alert alert-warning" role="alert">
+                                Ответных заявок нету
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
