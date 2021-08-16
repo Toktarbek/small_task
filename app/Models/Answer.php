@@ -9,6 +9,6 @@ use App\Models\Requisition;
 class Answer extends Model
 {
     public function requisitions(){
-    	return $this->belongsTo(Requisition::class);
+    	return $this->hasOne(Requisition::class);
     }
 }

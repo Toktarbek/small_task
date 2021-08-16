@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="alert alert-Light" role="alert">
+                    <div class="alert alert-Light table-responsive" role="alert">
                         <table class="table table-bordered table-condensed">
                             <thead>
                                 <th>#</th>
@@ -33,9 +33,15 @@
                                     <td><textarea style="border:none; resize: none; width: 100%">{{$r->message}}</textarea></td>
                                     <td>{{$r->user->name}}</td>
                                     <td>{{$r->user->email}}</td>
-                                    <td><a href="{{url($r->file_name)}}" target="_blank">Файл</a></td>
+                                    <td><a href="{{url($r->file_name)}}" download>Файл</a></td>
                                     <td>{{$r->created_at}}</td>
-                                    <td><a href="{{url('admin/answer',[$r->id])}}" class="btn btn-primary">Ответить</a></td>
+                                    <td>
+                                        @if($r->status==0)
+                                            <a href="{{url('admin/answer',[$r->id])}}" class="btn btn-primary">Ответить</a>
+                                        @else
+                                            Ответил
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

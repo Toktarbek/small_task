@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [ClientController::class, 'index'])->middleware('client');
 Route::get('/requisition', [ClientController::class, 'requisition'])->middleware('client');
 Route::post('/send', [ClientController::class, 'send']);
+Route::get('/confirm/{id}', [ClientController::class, 'confirm']);
 
 Route::get('/admin', [ManagerController::class, 'index'])->middleware('manager');
 Route::get('/admin/answer/{id}', [ManagerController::class, 'answer'])->middleware('manager');

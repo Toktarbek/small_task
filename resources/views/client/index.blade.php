@@ -22,9 +22,9 @@
                                     </span>
                                     @foreach($requisition_unread as $requisition)
                                         <div class="dropdown-divider"></div>
-                                        <a href="" class="dropdown-item">
-                                            <i class="fas fa-users mr-2"></i> {{$requisition->subject}}
-                                            <span class="float-right text-muted text-sm">{{$requisition->created_at}}</span>
+                                        <a href="{{url('confirm',[$requisition->id])}}" class="dropdown-item">
+                                            <i class="far fa-envelope mr-2"></i> {{$requisition->answers->answer}}
+                                            <span class="float-right text-muted text-sm">{{$requisition->answers->created_at}}</span>
                                         </a>
                                     @endforeach
                                 </div>
@@ -41,37 +41,31 @@
                         </div>
                     @endif
 
-                    <div class="alert alert-Light">
-                    <table class="table table-bordered table-condensed">
-                            <thead>
-                                <th>#</th>
-                                <th>Тема</th>
-                                <th>Сообщение</th>
-                                <th>Ответы</th>
-                                <th>Менеджер</th>
-                                <th>Дата создания</th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                @foreach($requisition_read as $requisition)
-                                <tr>
-                                    <td>{{$requisition->id}}</td>
-                                    <td>{{$requisition->subject}}</td>
-                                    <td>{{$requisition->message}}</td>
-                                    <td>
-                                        <ul class="list-group">
-                                            @foreach($requisition->answers as $answer)
-                                            <li class="list-group-item">{{$answer['answer']}}</li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>{{$requisition->user->name}}</td>
-                                    <td>{{$requisition->user->created_at}}</td>
-                                    <td><a href="" class="btn btn-primary">Подробнее</a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="alert alert-Light table-responsive">
+                        <table class="table table-bordered table-condensed">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Тема</th>
+                                    <th>Сообщение</th>
+                                    <th>Ответы</th>
+                                    <th>Менеджер</th>
+                                    <th>Дата ответа</th>
+                                </thead>
+                                <tbody>
+                                    @foreach($requisition_read as $requisition)
+                                    <tr>
+                                        <td>{{$requisition->id}}</td>
+                                        <td>{{$requisition->subject}}</td>
+                                        <td>{{$requisition->message}}</td>
+                                        <td>
+                                            {{(!empty($requisition->answers))?$requisition->answers->answer:''}}
+                                        </td>
+                                        <td>{{$requisition->user->name}}</td>
+                                        <td>{{(!empty($requisition->answers))?$requisition->answers->created_at:''}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>
