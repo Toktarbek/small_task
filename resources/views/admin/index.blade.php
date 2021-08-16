@@ -14,6 +14,7 @@
                         </div>
                     @endif
                     <div class="alert alert-Light table-responsive" role="alert">
+                        @if(count($requisition)>0)
                         <table class="table table-bordered table-condensed">
                             <thead>
                                 <th>#</th>
@@ -46,6 +47,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @else
+                        <div class="alert alert-warning" role="alert">
+                            Заявка нет.
+                        </div>
+                        @endif
                     </div>
                     
                 </div>
