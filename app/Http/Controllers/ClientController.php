@@ -50,6 +50,7 @@ class ClientController extends Controller
         $requisition->subject = $request->subject;
         $requisition->message = $request->message;
         $requisition->user_id  = Auth::user()->id;
+        
         if ($request->hasfile('files')) {
     		$file = $request->file('files');
     		$extension = $file->getClientOriginalExtension();
@@ -58,7 +59,7 @@ class ClientController extends Controller
     		$requisition->file_name = 'documents/'.$filename;
     	}else{
     		// return $request;
-    		$orders->file_name = '';
+    		$requisition->file_name = '';
     	}
         $requisition->save();
 

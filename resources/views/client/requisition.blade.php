@@ -35,7 +35,7 @@
                                 <div class="input-group-prepend">
                                 <span class="input-group-text">Файл</span>
                                 </div>
-                                <input type="file" class="form-control" name="files" required>
+                                <input type="file" class="form-control" name="files">
                             </div>
                             <div class="form-group text-right">
                                 <button type="submit" class="btn btn-primary">Отправить</button>

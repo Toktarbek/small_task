@@ -34,7 +34,11 @@
                                     <td><textarea style="border:none; resize: none; width: 100%">{{$r->message}}</textarea></td>
                                     <td>{{$r->user->name}}</td>
                                     <td>{{$r->user->email}}</td>
-                                    <td><a href="{{url($r->file_name)}}" download>Файл</a></td>
+                                    <td>
+                                        @if(!empty($r->file_name))
+                                            <a href="{{url($r->file_name)}}" download>Файл</a>
+                                        @endif
+                                    </td>
                                     <td>{{$r->created_at}}</td>
                                     <td>
                                         @if($r->status==0)
