@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
 	        [   
-	        	'name' => 'Elshat',
-	        	'email' => 'elshat90@mail.ru',
+	        	'name' => 'Admin',
+	        	'email' => 'admin@mail.ru',
 	        	'password' => bcrypt('123456789'),
 	        	'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 	        	'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
